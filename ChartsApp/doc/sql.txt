@@ -1,0 +1,56 @@
+select pscode , psdate , psbranch , 
+ sum (CASE WHEN ( Is7Id = 1 ) THEN (PsIs7Sales) ELSE 0 END) AS mashrobat ,
+ sum (CASE WHEN ( Is7Id = 2 ) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales2 ,
+ sum (CASE WHEN ( Is7Id = 3 ) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales3 
+from PsItemSpec7 group by pscode , psdate , psbranch
+
+Select PsHeader.PsBranch, COUNT(PsHeader.PsCode) as ShiftCount ,  SUM(PsHeader.PsSales) as SumSeles ,SUM(PsHeader.PsExpenses) as SumExpenses from PsHeader where PsDate Between '2022-05-26 00:00:00' And '2022-05-26 23:59:59' GROUP BY PsBranch   
+
+SELECT     Is7Name1, PsBranch, SUM(PsIs7Sales) AS SumSeles
+FROM         PsItemSpec7
+WHERE     (PsDate BETWEEN '2022-05-26 00:00:00' AND '2022-05-26 23:59:59')
+GROUP BY PsBranch, Is7Name1
+2021013	2/1	2022-06-09 18:09:47.000	فرع معادى	2	2	2	البان		618.00
+
+SELECT SUM(PsIs7Sales) as PsIs7Sales
+FROM `psitemspec7` WHERE PsDate Between '2022-06-07 00:00:00' And '2022-06-07 23:59:59' and 
+Is7Id = 5
+////////////////////////////////////////////////////////////
+SELECT Is7Name1,Is7Id,SUM(CASE WHEN (Is7Id = 1) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales1, SUM(CASE WHEN (Is7Id = 2) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales2, 
+                      SUM(CASE WHEN (Is7Id = 3) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales3, SUM(CASE WHEN (Is7Id = 4) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales4, SUM(CASE WHEN (Is7Id = 5) 
+                      THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales5, SUM(CASE WHEN (Is7Id = 6) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales6, SUM(CASE WHEN (Is7Id = 7) THEN (PsIs7Sales) ELSE 0 END) 
+                      AS PsIs1Sales7, SUM(CASE WHEN (Is7Id = 8) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales8, SUM(CASE WHEN (Is7Id = 9) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales9, SUM(CASE WHEN (Is7Id = 10) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales10
+
+FROM         PsItemSpec7
+WHERE     (PsDate BETWEEN '2022-06-09 00:00:00' AND '2022-06-09 23:59:59')
+GROUP BY Is7Name1, Is7Id
+////////////////////////////////////////////
+SELECT PsBranch,PsBranchCode,SUM(CASE WHEN (Is7Id = 1) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales1, SUM(CASE WHEN (Is7Id = 2) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales2, 
+                      SUM(CASE WHEN (Is7Id = 3) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales3, SUM(CASE WHEN (Is7Id = 4) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales4, SUM(CASE WHEN (Is7Id = 5) 
+                      THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales5, SUM(CASE WHEN (Is7Id = 6) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales6, SUM(CASE WHEN (Is7Id = 7) THEN (PsIs7Sales) ELSE 0 END) 
+                      AS PsIs1Sales7, SUM(CASE WHEN (Is7Id = 8) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales8, SUM(CASE WHEN (Is7Id = 9) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales9, SUM(CASE WHEN (Is7Id = 10) THEN (PsIs7Sales) ELSE 0 END) AS PsIs1Sales10
+
+FROM         PsItemSpec7
+WHERE     (PsDate BETWEEN '2022-06-09 00:00:00' AND '2022-06-09 23:59:59')
+
+GROUP BY PsBranch, PsBranchCode
+///////////////////////////////////
+
+SELECT Is7Name1, SUM(CASE WHEN (PsBranchCode = 1) THEN (PsIs7Sales) ELSE 0 END) AS PsBranchCodeSales1, SUM(CASE WHEN (PsBranchCode = 2) THEN (PsIs7Sales) ELSE 0 END) AS PsBranchCodeSales2, 
+                      SUM(CASE WHEN (PsBranchCode = 3) THEN (PsIs7Sales) ELSE 0 END) AS PsBranchCodeSales3, SUM(CASE WHEN (Is7Id = 4) THEN (PsIs7Sales) ELSE 0 END) AS PsBranchCodeSales4, SUM(CASE WHEN (PsBranchCode = 5) 
+                      THEN (PsIs7Sales) ELSE 0 END) AS PsBranchCodeSales5, SUM(CASE WHEN (PsBranchCode = 6) THEN (PsIs7Sales) ELSE 0 END) AS PsBranchCodeSales6, SUM(CASE WHEN (PsBranchCode = 7) THEN (PsIs7Sales) ELSE 0 END) 
+                      AS PsBranchCodeSales7, SUM(CASE WHEN (PsBranchCode = 8) THEN (PsIs7Sales) ELSE 0 END) AS PsBranchCodeSales8, SUM(CASE WHEN (PsBranchCode = 9) THEN (PsIs7Sales) ELSE 0 END) AS PsBranchCodeSales9, SUM(CASE WHEN (PsBranchCode = 10) THEN (PsIs7Sales) ELSE 0 END) AS PsBranchCodeSales10
+
+FROM         PsItemSpec7
+WHERE     (PsDate BETWEEN '2022-06-08 00:00:00' AND '2022-06-08 23:59:59')
+GROUP BY Is7Name1
+
+SELECT Is7Name1, SUM(PsItemSpec7.PsIs7Sales) AS PsBranchSales
+
+FROM         PsItemSpec7
+WHERE PsBranchCode = 1 AND
+(PsDate BETWEEN '2022-06-08 00:00:00' AND '2022-06-08 23:59:59')
+GROUP BY Is7Name1
+                   
+20250015	2/1	2022-06-09 18:09:47.000	فرع التحرير	10	6	6	سجائر		500.00
+20150015	2/1	2022-06-09 18:09:47.000	فرع مصرالجديدة	4	2	2	ماكولات		618.00
