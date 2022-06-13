@@ -14,5 +14,7 @@
 <link href="{{URL::asset('assets/css-rtl/style.css')}}" rel="stylesheet">
 <!--- Dark-mode css -->
 <link href="{{URL::asset('assets/css-rtl/style-dark.css')}}" rel="stylesheet">
-
+<link rel="stylesheet" type="text/css" href="{{asset('assets/styles/toastr.css')}}">
+{{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css"> --}}
+   @toastr_css
 @yield('css')

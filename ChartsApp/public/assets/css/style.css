@@ -21803,7 +21803,7 @@ table.dataTable {
     padding: 8px 10px;
     font-weight: 700;
     font-size: 12px;
-    color: #242f48; }
+    color: white; }
   table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc {
     background-image: none;
     background-color: #ecf0fa;

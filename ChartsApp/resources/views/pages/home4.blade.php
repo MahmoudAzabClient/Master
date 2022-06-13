@@ -69,11 +69,12 @@
      @include('includes.alerts.errors')
                 <h2 style="text-align:center"><a href="{{ url('home2')}}/"> {{ $branch->brch_name1 }} </a></h2>
                 <div class="card-body">
+                 <label>عدد السجلات</label>
                     <div class="table-responsive">
                         @if (isset($query))
                         <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'style="text-align: center">
                             <thead>
-                           <tr style="background-color:#33FFE9">
+                           <tr class="color-white" style="background-color:#16A98C;">
                                 <th class="border-bottom-0">#</th>
                                 <th class="border-bottom-0"> القسم</th>
                                 <th class="border-bottom-0"> الاجماليات</th>
@@ -86,12 +87,11 @@
                             @foreach ($query as $key =>  $item)
                                 <tr>
                                         <td scope="row">{{$key+1}}</td>
-                                       <td style="background-color:#5BFF33" scope="row" style="fixed: true">{{$item->Is7Name1}}</td>
-                                       <td style="background-color: #80ced6;" scope="row" style="fixed: true">{{number_format((float)$item->PsBranchCodeSales, 2 )}}</td>
-                                        
+                                       <td  scope="row" style="fixed: true">{{$item->Is7Name1}}</td>
+                                       <td style="background-color:#FFAD5B" scope="row" style="fixed: true">{{number_format((float)$item->PsBranchCodeSales, 2 )}}</td>
                                 </tr>
                             @endforeach
-                                <tr style="background-color: #F933FF;">
+                                <tr style="background-color: #C93D2E; color: white;">
                                  <td scope="row">10</td>
                                 <td scope="row">   اجمالى مبيعات الاقسام للفرع</td>
                                  <td scope="row">{{number_format((float) $total_category[0]->PsIs7Sales, 2) }}</td>                                                               

@@ -66,11 +66,12 @@
                 @include('includes.alerts.errors')
                 <h2 style="text-align:center"><a href="{{ route('home') }}">مبيعات الفروع اجمالى </a></h2>
                 <div class="card-body">
+                <label>عدد السجلات</label>
                     <div class="table-responsive">
                         @if (isset($query))
                         <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'style="text-align: center">
                             <thead>
-                            <tr style="background-color:#33FFE9">
+                            <tr class="color-white" style="background-color:#16A98C;">
                                 <th class="border-bottom-0">#</th>
                                 <th class="border-bottom-0"> الفرع</th>
                                 <th class="border-bottom-0"> المبيعات</th>
@@ -85,13 +86,13 @@
                             @foreach ($query as $key =>  $item)
                                 <tr>
                                     <td scope="row">{{$key+1}}</td>
-                                    <td scope="row" style="background-color:#5BFF33"><a href="{{ URL::to('home')}}/{{ $item->PsBranchCode}}">{{ $item->PsBranch }}</a></td>
-                                    <td scope="row">{{ number_format((float) $item->PsSales, 2)}}</td>
-                                    <td scope="row">{{number_format((float) $item->PsExpenses, 2)}}</td>
-                                    <td scope="row" style="background-color: #80ced6;">{{$item->PsSales - $item->PsExpenses}}</td>
+                                    <td scope="row" ><a href="{{ URL::to('home')}}/{{ $item->PsBranchCode}}">{{ $item->PsBranch }}</a></td>
+                                    <td scope="row" style="background-color:#FFAD5B">{{ number_format((float) $item->PsSales, 2)}}</td>
+                                    <td scope="row" style="background-color:#F33A6A ">{{number_format((float) $item->PsExpenses, 2)}}</td>
+                                    <td scope="row" style="background-color: #3FB7C7;">{{$item->PsSales - $item->PsExpenses}}</td>
                                 </tr>
                             @endforeach
-                            <tr style="background-color: #F933FF;">
+                            <tr style="background-color: #C93D2E; color: white;">
                                 <td scope="row">{{ $key+2 }}</td>
                                 <td scope="row">اجماليات </td>
                                 <td scope="row">{{$total_sales}}</td>
@@ -188,5 +189,9 @@
 });
 });
 </script>
-
+<script>
+    .color-white{
+        color: white;
+    }
+</script>
 @endsection

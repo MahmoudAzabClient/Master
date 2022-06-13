@@ -70,12 +70,14 @@
                 @include('includes.alerts.error')
                 @include('includes.alerts.errors')
                 <div class="card-body">
-                <h2 style="text-align:center"><a href="{{ url('home3')}}/">{{ $branch->brch_name1 }} </a></h2>                <div class="card-body">
+                <h2 style="text-align:center"><a href="{{ url('home3')}}/">{{ $branch->brch_name1 }} </a></h2>                
+                <div class="card-body">
+                     <label>عدد السجلات</label>
                     <div class="table-responsive">
                         @if (isset($query))
                         <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'style="text-align: center">
                             <thead>
-                            <tr style="background-color:#33FFE9">
+                            <tr class="color-white" style="background-color:#16A98C;">
                                 <th class="border-bottom-0">#</th>
                                 <th class="border-bottom-0"> المبيعات</th>
                                 <th class="border-bottom-0"> المصروفات</th>
@@ -87,11 +89,11 @@
                                 $i = 0;
                             @endphp
                             @foreach ($query as $key =>  $item)
-                                <tr style="background-color: #F933FF;">
+                                <tr >
                                     <td scope="row">{{$key+1}}</td>
-                                    <td scope="row">{{ number_format((float) $item->PsSales, 2)}}</td>
-                                    <td scope="row">{{number_format((float) $item->PsExpenses, 2)}}</td>
-                                    <td scope="row">{{$item->PsSales - $item->PsExpenses}}</td>
+                                    <td style="background-color:#FFAD5B" scope="row">{{ number_format((float) $item->PsSales, 2)}}</td>
+                                    <td style="background-color:#FFAD5B" scope="row">{{number_format((float) $item->PsExpenses, 2)}}</td>
+                                    <td style="background-color: #3FB7C7;" scope="row">{{$item->PsSales - $item->PsExpenses}}</td>
                                 </tr>
                             @endforeach
                            

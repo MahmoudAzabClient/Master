@@ -67,11 +67,12 @@
     @include('includes.alerts.errors')
                 <h2 style="text-align:center"><a href="{{ route('home2') }}"> مبيعات الاقسام تفصيلى </a></h2>
                 <div class="card-body">
+                 <label>عدد السجلات</label>
                     <div class="table-responsive">
                         @if (isset($query))
                         <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'style="text-align: center">
                             <thead>
-                            <tr style="background-color:#33FFE9">
+                            <tr class="color-white" style="background-color:#16A98C;">
                                 <th class="border-bottom-0">#</th>
                                 <th class="border-bottom-0"> الفرع</th>
                                 @foreach($categories as $category)
@@ -88,42 +89,42 @@
                             @foreach ($query as $key =>  $item)
                                 <tr>
                                         <td scope="row">{{$key+1}}</td>
-                                        <td scope="row" style="background-color:#5BFF33"><a href="{{ url('home2') }}/{{ $item->PsBranchCode }}">{{ $item->PsBranch }}</a></td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales1, 2)}}</td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales2, 2) }}</td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales3, 2) }}</td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales4, 2) }}</td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales5, 2) }}</td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales6, 2) }}</td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales7, 2) }}</td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales8, 2) }}</td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales9, 2) }}</td>
-                                        <td scope="row">{{number_format((float) $item->PsIs1Sales10, 2) }}</td>
+                                        <td scope="row"><a href="{{ url('home2') }}/{{ $item->PsBranchCode }}">{{ $item->PsBranch }}</a></td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales1, 2)}}</td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales2, 2) }}</td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales3, 2) }}</td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales4, 2) }}</td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales5, 2) }}</td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales6, 2) }}</td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales7, 2) }}</td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales8, 2) }}</td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales9, 2) }}</td>
+                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales10, 2) }}</td>
                                         @if ($item->PsBranchCode == 1)
-                                        <td style="background-color: #80ced6;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales1, 2) }}</td>
+                                        <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales1, 2) }}</td>
                                         @elseif ($item->PsBranchCode == 2)
-                                         <td style="background-color: #80ced6;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales2, 2) }}</td>
+                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales2, 2) }}</td>
                                         @elseif ($item->PsBranchCode == 3)
-                                         <td style="background-color: #80ced6;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales3, 2) }}</td>
+                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales3, 2) }}</td>
                                         @elseif ($item->PsBranchCode == 4)
-                                         <td style="background-color: #80ced6;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales4, 2) }}</td>
+                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales4, 2) }}</td>
                                         @elseif ($item->PsBranchCode == 5)
-                                         <td style="background-color: #80ced6;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales5, 2) }}</td>
+                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales5, 2) }}</td>
                                         @elseif ($item->PsBranchCode == 6)
-                                         <td style="background-color: #80ced6;"  scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales6, 2) }}</td>
+                                         <td style="background-color: #3FB7C7;"  scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales6, 2) }}</td>
                                         @elseif ($item->PsBranchCode == 7)
-                                         <td style="background-color: #80ced6;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales7, 2) }}</td>
+                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales7, 2) }}</td>
                                         @elseif ($item->PsBranchCode == 8)
-                                         <td style="background-color: #80ced6;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales8, 2) }}</td>
+                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales8, 2) }}</td>
                                         @elseif ($item->PsBranchCode == 9)
-                                         <td style="background-color: #80ced6;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales9, 2) }}</td>
+                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales9, 2) }}</td>
                                         @elseif ($item->PsBranchCode == 10)
-                                         <td style="background-color: #80ced6;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales10, 2) }}</td>
+                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales10, 2) }}</td>
                                         @endif
                                        
                                 </tr>
                             @endforeach
-                            <tr style="background-color: #F933FF;">
+                            <tr style="background-color: #C93D2E; color: white;">
                                 <td scope="row">10</td>
                                 <td scope="row">اجمالى المبيعات</td>
                                  <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales1, 2) }}</td>                                                               
