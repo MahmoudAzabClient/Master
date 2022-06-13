@@ -136,10 +136,8 @@
                                  <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales8, 2) }}</td>                                                               
                                  <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales9, 2)}}</td>                                                               
                                  <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales10, 2) }}</td>    
-                                                                                           
-                                                                         
-                                                                                              
-                                <td scope="row">{{$total_sales[0]->PsIs7Sales}}</td>
+                                                                                                                                                                 
+                                <td scope="row">{{number_format((float)$total_sales[0]->PsIs7Sales, 2)}}</td>
                             </tr>
 
                             </tbody>

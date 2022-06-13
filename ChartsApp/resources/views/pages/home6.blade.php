@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="card-header pb-0">
-                    <form action="{{route('search6', ['id' => $branch->id])}}" method="POST" role="search" autocomplete="off">
+                    <form action="{{route('search6', ['id' => $branch->brh_id])}}" method="POST" role="search" autocomplete="off">
                             {{ csrf_field() }}
                             <div class="row">
                             <input type="hidden" name="id" value="">
@@ -70,7 +70,7 @@
                 @include('includes.alerts.error')
                 @include('includes.alerts.errors')
                 <div class="card-body">
-                <h2 style="text-align:center"><a href="{{ url('home3')}}/">{{ $branch->ps_name1 }} </a></h2>                <div class="card-body">
+                <h2 style="text-align:center"><a href="{{ url('home3')}}/">{{ $branch->brch_name1 }} </a></h2>                <div class="card-body">
                     <div class="table-responsive">
                         @if (isset($query))
                         <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'style="text-align: center">

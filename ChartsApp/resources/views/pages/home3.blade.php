@@ -75,8 +75,8 @@
                            <tr style="background-color:#33FFE9">
                                 <th class="border-bottom-0">#</th>
                                 <th class="border-bottom-0"> القسم</th>
-                                @foreach($branchs as $branch)
-                                    <th class="border-bottom-0"> {{$branch->ps_name1}}</th>
+                                @foreach($branches as $branch)
+                                    <th class="border-bottom-0"> {{$branch->brch_name1}}</th>
                                     {{-- <th class="border-bottom-0"> {{$category->Is7Name1}}</th> --}}
                                 @endforeach
                                 <th class="border-bottom-0"> الاجماليات</th>
@@ -137,7 +137,7 @@
                                  <td scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales9, 2)}}</td>                                                               
                                  <td scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales10, 2) }}</td>                                                               
                                                                                                                                            
-                                <td scope="row">{{$total_sales[0]->PsIs7Sales}}</td>
+                                <td scope="row">{{ number_format((float)$total_sales[0]->PsIs7Sales, 2)}}</td>
                             </tr>
 
                             </tbody>

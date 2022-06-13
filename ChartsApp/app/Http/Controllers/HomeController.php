@@ -154,7 +154,7 @@ class HomeController extends Controller
     public function index3(Request $request){
         try{
             
-            $branchs = DB::table('branchs')->get();
+            $branches = DB::table('branches')->get();
             $last_date = PsItemSpec7::select('PsDate')->orderBy('PsDate', 'desc')->first()->PsDate;
             $start_last_date_at = Carbon::parse($last_date)->format('Y/m/d');
             $end_last_date_at = Carbon::parse($last_date)->format('Y/m/d');
@@ -168,7 +168,7 @@ class HomeController extends Controller
                return redirect()->back()->with('error', 'لا توجد بيانات فى هذا الوقت ');
            }
            session()->flash('success', 'نم جلب البيانات بنجاح ');
-           return view('pages.home3', compact('start_at','branchs', 'end_at','query', 'total_sales', 'total_branch', 'total_category'));
+           return view('pages.home3', compact('start_at','branches', 'end_at','query', 'total_sales', 'total_branch', 'total_category'));
        }catch (\Exception $ex){
            session()->flash('error', 'لا توجد بيانات فى هذا التاريخ ');
            return redirect()->back()->with($ex->getMessage());
@@ -177,7 +177,7 @@ class HomeController extends Controller
     public function search3(Request $request){
         try{
 
-            $branchs = DB::table('branchs')->get();
+            $branches = DB::table('branches')->get();
             $start_at = date($request->start_at);
             $end_at = date($request->end_at);
             $query = PsItemSpec7::select([DB::raw('Is7Id'), DB::raw('Is7Name1'), DB::raw('Is7Id'), DB::raw('SUM(CASE WHEN (PsBranchCode = 1) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales1'), DB::raw('SUM(CASE WHEN (PsBranchCode = 2) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales2'), DB::raw('SUM(CASE WHEN (PsBranchCode = 3) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales3'), DB::raw('SUM(CASE WHEN (PsBranchCode = 4) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales4'), DB::raw('SUM(CASE WHEN (PsBranchCode = 5) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales5'), DB::raw('SUM(CASE WHEN (PsBranchCode = 6) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales6'), DB::raw('SUM(CASE WHEN (PsBranchCode = 7) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales7'), DB::raw('SUM(CASE WHEN (PsBranchCode = 8) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales8'), DB::raw('SUM(CASE WHEN (PsBranchCode = 9) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales9'), DB::raw('SUM(CASE WHEN (PsBranchCode = 10) THEN (PsIs7Sales) ELSE 0 END)  as PsBranchCodeSales10')])->whereBetween('PsDate', [$start_at .  ' 00:00:00', $end_at .  ' 23:59:59'])->groupBy('Is7Name1', 'Is7Id')->get();
@@ -189,7 +189,7 @@ class HomeController extends Controller
                 return redirect()->back()->with('error', 'لا توجد بيانات فى هذا الوقت ');
             }
             session()->flash('success', 'نم جلب البيانات بنجاح ');
-            return view('pages.home3', compact('start_at', 'end_at','branchs', 'query', 'total_sales', 'total_category', 'total_branch'));
+            return view('pages.home3', compact('start_at', 'end_at','branches', 'query', 'total_sales', 'total_category', 'total_branch'));
         }catch (\Exception $ex){
             session()->flash('error', 'لا توجد بيانات فى هذا التاريخ ');
             return redirect()->back()->with($ex->getMessage());
@@ -202,7 +202,7 @@ class HomeController extends Controller
             $end_last_date_at = Carbon::parse($last_date)->format('Y/m/d');
             $start_at = date($request->start_at) ? date($request->start_at) : $start_last_date_at;
             $end_at = date($request->end_at) ? date($request->end_at) :  $end_last_date_at;
-            $branch = DB::table('branchs')->where('id', $id)->first();
+            $branch = DB::table('branches')->where('brh_id', $id)->first();
             $query = PsItemSpec7::select([DB::raw('Is7Name1'), DB::raw('SUM(PsIs7Sales)   as PsBranchCodeSales')])->where('PsBranchCode', $id)->whereBetween('PsDate', [$start_at .  ' 00:00:00', $end_at .  ' 23:59:59'])->groupBy('Is7Name1')->get();
             $total_category = PsItemSpec7::select([DB::raw('SUM(PsIs7Sales)  as PsIs7Sales') ])->where('PsBranchCode', $id)->whereBetween('PsDate', [$start_at .  ' 00:00:00', $end_at .  ' 23:59:59'])->get();
 
@@ -219,7 +219,7 @@ class HomeController extends Controller
         try{
             $start_at = \date($request->start_at);
             $end_at = \date($request->end_at);
-            $branch = DB::table('branchs')->where('id', $id)->first();
+            $branch = DB::table('branches')->where('brh_id', $id)->first();
             $query = PsItemSpec7::select([DB::raw('Is7Name1'), DB::raw('SUM(PsIs7Sales)   as PsBranchCodeSales')])->where('PsBranchCode', $id)->whereBetween('PsDate', [$start_at .  ' 00:00:00', $end_at .  ' 23:59:59'])->groupBy('Is7Name1')->get();
             $total_category = PsItemSpec7::select([DB::raw('SUM(PsIs7Sales)  as PsIs7Sales') ])->where('PsBranchCode', $id)->whereBetween('PsDate', [$start_at .  ' 00:00:00', $end_at .  ' 23:59:59'])->get();
             session()->flash('success', 'نم جلب البيانات بنجاح ');
@@ -271,7 +271,7 @@ class HomeController extends Controller
             $end_last_date_at = Carbon::parse($last_date)->format('Y/m/d');
             $start_at = date($request->start_at) ? date($request->start_at) : $start_last_date_at;
             $end_at = date($request->end_at) ? date($request->end_at) :  $end_last_date_at;
-            $branch = DB::table('branchs')->where('id', $id)->first();
+            $branch = DB::table('branches')->where('brh_id', $id)->first();
             $query = PsHeader::select([DB::raw('PsBranchCode'),DB::raw('PsBranch'),   DB::raw('SUM(PsSales) as PsSales'), DB::raw('SUM(PsExpenses) as PsExpenses')])->where('PsBranchCode', $id)->whereBetween('PsDate', [$start_at .  ' 00:00:00', $end_at .  ' 23:59:59'])->groupBy('PsBranch', 'PsBranchCode')->get();
              if($query == ""){
                  return redirect()->back()->with('error', 'لا توجد بيانات فى هذا الوقت ');
@@ -286,7 +286,7 @@ class HomeController extends Controller
     }
     public function search6(Request $request, $id){
         try{
-            $branch = DB::table('branchs')->where('id', $id)->first();
+            $branch = DB::table('branches')->where('brh_id', $id)->first();
             $start_at = \date($request->start_at);
             $end_at = \date($request->end_at);
             $query = PsHeader::select([DB::raw('PsBranchCode'),DB::raw('PsBranch'),   DB::raw('SUM(PsSales) as PsSales'), DB::raw('SUM(PsExpenses) as PsExpenses')])->where('PsBranchCode', $id)->whereBetween('PsDate', [$start_at .  ' 00:00:00', $end_at .  ' 23:59:59'])->groupBy('PsBranch', 'PsBranchCode')->get();

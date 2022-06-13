@@ -87,7 +87,7 @@
                                 <tr>
                                         <td scope="row">{{$key+1}}</td>
                                        <td style="background-color:#5BFF33" scope="row" style="fixed: true">{{$item->PsBranch}}</td>
-                                       <td style="background-color: #80ced6;" scope="row" style="fixed: true">{{$item->PsBranchCodeSales}}</td>
+                                       <td style="background-color: #80ced6;" scope="row" style="fixed: true">{{number_format((float)$item->PsBranchCodeSales, 2)}}</td>
     
                                 </tr>
 
