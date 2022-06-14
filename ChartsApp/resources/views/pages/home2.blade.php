@@ -90,54 +90,26 @@
                                 <tr>
                                         <td scope="row">{{$key+1}}</td>
                                         <td scope="row"><a href="{{ url('home2') }}/{{ $item->PsBranchCode }}">{{ $item->PsBranch }}</a></td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales1, 2)}}</td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales2, 2) }}</td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales3, 2) }}</td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales4, 2) }}</td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales5, 2) }}</td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales6, 2) }}</td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales7, 2) }}</td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales8, 2) }}</td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales9, 2) }}</td>
-                                        <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->PsIs1Sales10, 2) }}</td>
-                                        @if ($item->PsBranchCode == 1)
-                                        <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales1, 2) }}</td>
-                                        @elseif ($item->PsBranchCode == 2)
-                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales2, 2) }}</td>
-                                        @elseif ($item->PsBranchCode == 3)
-                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales3, 2) }}</td>
-                                        @elseif ($item->PsBranchCode == 4)
-                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales4, 2) }}</td>
-                                        @elseif ($item->PsBranchCode == 5)
-                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales5, 2) }}</td>
-                                        @elseif ($item->PsBranchCode == 6)
-                                         <td style="background-color: #3FB7C7;"  scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales6, 2) }}</td>
-                                        @elseif ($item->PsBranchCode == 7)
-                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales7, 2) }}</td>
-                                        @elseif ($item->PsBranchCode == 8)
-                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales8, 2) }}</td>
-                                        @elseif ($item->PsBranchCode == 9)
-                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales9, 2) }}</td>
-                                        @elseif ($item->PsBranchCode == 10)
-                                         <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->PsBranchCodeSales10, 2) }}</td>
-                                        @endif
+                                        @for ($i=1; $i<=count($categories); $i++)                
+                                             <td scope="row"style="background-color:#FFAD5B">{{number_format((float) $item->{'PsIs1Sales'.$i}, 2)}}</td>
+                                        @endfor
+                                        
+                                        @for ($i=1; $i<=count($branches); $i++)
+                                        @if ($item->PsBranchCode == $i)
+                                            <td style="background-color: #3FB7C7;" scope="row">{{number_format((float) $total_branch[0]->{'PsBranchCodeSales'.$i}, 2) }}</td>
+                                         @endif
+                                        @endfor
+                                        
                                        
                                 </tr>
                             @endforeach
                             <tr style="background-color: #C93D2E; color: white;">
                                 <td scope="row">10</td>
                                 <td scope="row">اجمالى المبيعات</td>
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales1, 2) }}</td>                                                               
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales2, 2) }}</td>                                                               
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales3, 2)}}</td>                                                               
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales4, 2) }}</td>                                                               
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales5, 2)}}</td>                                                               
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales6, 2) }}</td>                                                               
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales7, 2) }}</td>                                                               
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales8, 2) }}</td>                                                               
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales9, 2)}}</td>                                                               
-                                 <td scope="row">{{number_format((float) $total_category[0]->PsIs1Sales10, 2) }}</td>    
-                                                                                                                                                                 
+                                @for ($i=1; $i<=count($categories); $i++)
+                                 <td scope="row">{{number_format((float) $total_category[0]->{'PsIs1Sales'.$i}, 2) }}</td>                                                               
+                                @endfor
+
                                 <td scope="row">{{number_format((float)$total_sales[0]->PsIs7Sales, 2)}}</td>
                             </tr>
 
@@ -181,22 +153,6 @@
     <!--Internal  Datepicker js -->
     <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
     
-    {{--<!--Internal  jquery.maskedinput js -->
-    <script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
-    <!--Internal  spectrum-colorpicker js -->
-    <script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
-    <!-- Internal Select2.min js -->
-    <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-    <!--Internal Ion.rangeSlider.min js -->
-    <script src="{{ URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js') }}"></script>
-    <!--Internal  jquery-simple-datetimepicker js -->
-    <script src="{{ URL::asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js') }}"></script>
-    <!-- Ionicons js -->
-    <script src="{{ URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
-    <!--Internal  pickerjs js -->
-    <script src="{{ URL::asset('assets/plugins/pickerjs/picker.min.js') }}"></script>
-    <!-- Internal form-elements js -->
-    <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script> --}}
     <script>
         var date = $('.fc-datepicker').datepicker({
             dateFormat: 'yy-mm-dd'
@@ -224,8 +180,6 @@
         },
         options: {
     indexAxis: 'y',
-    // Elements options apply to all of the options unless overridden in a dataset
-    // In this case, we are setting the border of each horizontal bar to be 2px wide
     elements: {
       bar: {
         borderWidth: 2,
@@ -245,5 +199,4 @@
 });
 });
 </script>
-
 @endsection
